@@ -9,8 +9,6 @@ import {
   platformBreakdown,
   stack,
   wins,
-  testimonials,
-  firms,
   achievements,
   contests,
 } from '../data/portfolio.js';
@@ -149,50 +147,11 @@ const badgeIcon = { crown: '👑', star: '⭐', shield: '🛡️' };
     </div>
   </section>
 
-  <!-- ===== TESTIMONIALS ===== -->
-  <section id="testimonials">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="section-num">#04</span>
-        <span class="section-title">testimonials</span>
-        <span class="section-sub">what firms & clients say</span>
-      </div>
-      <div class="grid grid-3">
-        {testimonials.map((t) => (
-          <div class="card quote-card reveal">
-            <div class="quote-mark">&ldquo;</div>
-            <p class="quote-text">{t.quote}</p>
-            <div class="quote-foot">
-              <div class="quote-org">{t.org}</div>
-              <div class="quote-role">{t.role}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <!-- firms & platforms strip -->
-      <div class="firms reveal">
-        <div class="firm-block">
-          <div class="firm-label">Contracted by</div>
-          <div class="tags">
-            {firms.contractedBy.map((f) => <span class="tag">{f}</span>)}
-          </div>
-        </div>
-        <div class="firm-block">
-          <div class="firm-label">Ranked on</div>
-          <div class="tags">
-            {firms.rankedOn.map((f) => <span class="tag">{f}</span>)}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== ACHIEVEMENTS CAROUSEL ===== -->
   <section id="achievements">
     <div class="wrap">
       <div class="section-head">
-        <span class="section-num">#05</span>
+        <span class="section-num">#04</span>
         <span class="section-title">achievements</span>
         <span class="section-sub">Code4rena, Sherlock, firms</span>
       </div>
@@ -227,7 +186,7 @@ const badgeIcon = { crown: '👑', star: '⭐', shield: '🛡️' };
   <section id="findings">
     <div class="wrap">
       <div class="section-head">
-        <span class="section-num">#06</span>
+        <span class="section-num">#05</span>
         <span class="section-title">findings</span>
         <span class="section-sub">62 confirmed across 4 platforms</span>
       </div>
@@ -265,7 +224,7 @@ const badgeIcon = { crown: '👑', star: '⭐', shield: '🛡️' };
   <section id="request">
     <div class="wrap">
       <div class="section-head">
-        <span class="section-num">#07</span>
+        <span class="section-num">#06</span>
         <span class="section-title">request an audit</span>
         <span class="section-sub">scope it, I reply within 24h</span>
       </div>
