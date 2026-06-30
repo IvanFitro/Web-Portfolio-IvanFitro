@@ -1,0 +1,7 @@
+# Responsible disclosure for ivanfitro.com
+Contact: mailto:ivanfitro.ph@gmail.com
+Contact: https://t.me/IvanFitro
+Contact: https://x.com/FitroIvan
+Preferred-Languages: en, es
+Canonical: https://ivanfitro.com/.well-known/security.txt
+Expires: 2027-06-30T00:00:00.000Z

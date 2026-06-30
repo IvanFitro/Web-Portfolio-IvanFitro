@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { profile, privateAudits, triage } from '../data/portfolio.js';
+---
+
+<Base
+  title={`Work — ${profile.name}`}
+  description="Private security audits and bug triage by Ivan Fitro — engagements with Pashov Audit Group, AdevarLabs, Burrasec and solo clients."
+>
+  <Nav active="work" />
+
+  <!-- ===== PAGE HERO ===== -->
+  <header class="page-hero">
+    <div class="wrap">
+      <span class="hero-eyebrow">
+        <span class="gem" aria-hidden="true"><svg viewBox="0 0 16 16"><polygon points="8,1 14,6.5 8,6.5" fill="#5ff0ff"/><polygon points="8,1 2,6.5 8,6.5" fill="#00d9ff"/><polygon points="2,6.5 8,6.5 8,15" fill="#0a8aa6"/><polygon points="14,6.5 8,6.5 8,15" fill="#067a93"/></svg></span>
+        portfolio / work
+      </span>
+      <h1 class="page-title">Work</h1>
+      <p class="page-lede">
+        Private security engagements with audit firms and solo clients, plus bug
+        triage work.
+      </p>
+    </div>
+  </header>
+
+  <!-- ===== PRIVATE AUDITS ===== -->
+  <section id="private-audits">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">#01</span>
+        <span class="section-title">private audits</span>
+        <span class="section-sub">{privateAudits.length} engagements</span>
+      </div>
+      <div class="table-wrap reveal">
+        <table>
+          <thead>
+            <tr>
+              <th>Protocol</th>
+              <th class="hide-sm">Firm</th>
+              <th>Language</th>
+              <th class="hide-sm">Date</th>
+              <th>Report</th>
+            </tr>
+          </thead>
+          <tbody>
+            {privateAudits.map((a) => {
+              const lang = a.lang ?? 'Solidity';
+              return (
+                <tr>
+                  <td class="proto-cell">{a.protocol}</td>
+                  <td class="hide-sm"><span class="firm-tag">{a.firm}</span></td>
+                  <td><span class={`lang ${lang.toLowerCase()}`}>{lang}</span></td>
+                  <td class="hide-sm date-cell">{a.date}</td>
+                  <td>
+                    {a.report
+                      ? <a class="report-link" href={a.report} target="_blank" rel="noopener noreferrer">view ↗</a>
+                      : <span class="report-private">private</span>}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRIAGE ===== -->
+  <section id="triage">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">#02</span>
+        <span class="section-title">triage</span>
+        <span class="section-sub">bug bounty triage</span>
+      </div>
+      {triage.length === 0 ? (
+        <div class="empty-state">Triage records coming soon.</div>
+      ) : (
+        <div class="table-wrap reveal">
+          <table>
+            <thead>
+              <tr>
+                <th>Protocol</th>
+                <th>Firm</th>
+                <th>Language</th>
+              </tr>
+            </thead>
+            <tbody>
+              {triage.map((t) => (
+                <tr>
+                  <td class="proto-cell">{t.protocol}</td>
+                  <td><span class="firm-tag">{t.firm}</span></td>
+                  <td><span class={`lang ${t.lang.toLowerCase()}`}>{t.lang}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <Footer />
+</Base>

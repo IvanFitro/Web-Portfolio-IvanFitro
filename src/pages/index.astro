@@ -1,0 +1,414 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import {
+  profile,
+  contacts,
+  stats,
+  platformBreakdown,
+  stack,
+  wins,
+  testimonials,
+  firms,
+  achievements,
+  contests,
+} from '../data/portfolio.js';
+
+const maxPf = Math.max(...platformBreakdown.map((p) => p.count));
+const badgeIcon = { crown: '👑', star: '⭐', shield: '🛡️' };
+---
+
+<Base
+  title={`${profile.name} — ${profile.role}`}
+  description={`${profile.name}: smart contract security researcher. 60+ confirmed findings across Code4rena, Sherlock, CodeHawks & Cantina, plus private audits.`}
+>
+  <Nav active="home" />
+
+  <!-- ===== HERO (Kann-style + flying logo) ===== -->
+  <header id="top" class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="hero-eyebrow"><span class="gem" aria-hidden="true"><svg viewBox="0 0 16 16"><polygon points="8,1 14,6.5 8,6.5" fill="#5ff0ff"/><polygon points="8,1 2,6.5 8,6.5" fill="#00d9ff"/><polygon points="2,6.5 8,6.5 8,15" fill="#0a8aa6"/><polygon points="14,6.5 8,6.5 8,15" fill="#067a93"/></svg></span> {profile.available}</span>
+          <h1>Smart contract security<br /><span class="accent">researcher</span></h1>
+          <p class="hero-lede">{profile.bio}</p>
+          <p class="hero-prompt mono">$ <span class="accent">{profile.tagline}</span><span class="cursor"></span></p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#request">request audit →</a>
+            <a class="btn" href="#findings">view findings</a>
+            <a class="btn" href={contacts.githubContests} target="_blank" rel="noopener noreferrer">github ↗</a>
+          </div>
+        </div>
+
+        <div class="hero-logo">
+          <!-- Flying logo: your brand mark with rotating rings + float animation -->
+          <div class="flying-logo">
+            <span class="lring lring-1"></span>
+            <span class="lring lring-2"></span>
+            <img src="/images/logo.jpg" alt="Ivan Fitro logo" width="320" height="320" />
+          </div>
+        </div>
+      </div>
+
+      <!-- stats banner -->
+      <div class="stats-banner reveal">
+        {stats.map((s) => (
+          <div class="stat-cell">
+            <div class="stat-val">{s.value}</div>
+            <div class="stat-lbl">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">#01</span>
+        <span class="section-title">about</span>
+      </div>
+      <div class="grid grid-2">
+        <div class="reveal">
+          <p class="dim" style="font-size:14.5px;line-height:1.8;">
+            I'm Ivan, an independent security researcher focused on EVM smart
+            contracts. Over the past <span class="accent">3+ years</span> I've
+            reviewed protocols spanning DeFi, stablecoins, lending, cross-chain
+            bridges, prediction markets and staking — both in public competitions
+            and private engagements with established audit firms.
+          </p>
+          <p class="dim" style="font-size:14.5px;line-height:1.8;margin-top:16px;">
+            My approach is manual-first: deep reading of the codebase, threat
+            modeling against the protocol's economic assumptions, then proving
+            issues with concrete PoCs. I care about the bugs that pattern-matching
+            and tooling miss.
+          </p>
+        </div>
+        <div class="reveal">
+          <div class="card" style="height:100%;">
+            <h3 style="color:var(--blue);font-size:13px;margin-bottom:16px;">› findings_by_platform</h3>
+            <div class="platforms">
+              {platformBreakdown.map((p) => (
+                <div class="pf-row">
+                  <span class="pf-name">{p.platform}</span>
+                  <div class="pf-track"><div class="pf-fill" style={`width:${(p.count / maxPf) * 100}%`}></div></div>
+                  <span class="pf-count">{p.count}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STACK ===== -->
+  <section id="stack">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">#02</span>
+        <span class="section-title">stack</span>
+        <span class="section-sub">languages, domains, methods</span>
+      </div>
+      <div class="grid grid-3">
+        {stack.map((s) => (
+          <div class="card stack-card reveal">
+            <h3>{s.category}</h3>
+            <div class="tags">
+              {s.items.map((i) => <span class="tag">{i}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WINS ===== -->
+  <section id="wins">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">#03</span>
+        <span class="section-title">wins</span>
+        <span class="section-sub">selected reports & top finishes</span>
+      </div>
+      <div class="grid grid-2">
+        {wins.map((w) => (
+          <div class="card win-card reveal">
+            <span class="win-rank">{w.rank}</span>
+            <div class="win-proto">
+              {w.protocol}
+              <span class="badge-icon">{badgeIcon[w.badge] ?? ''}</span>
+            </div>
+            <div class="win-note">{w.note}</div>
+            <div class="win-plat">// {w.platform}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">#04</span>
+        <span class="section-title">testimonials</span>
+        <span class="section-sub">what firms & clients say</span>
+      </div>
+      <div class="grid grid-3">
+        {testimonials.map((t) => (
+          <div class="card quote-card reveal">
+            <div class="quote-mark">&ldquo;</div>
+            <p class="quote-text">{t.quote}</p>
+            <div class="quote-foot">
+              <div class="quote-org">{t.org}</div>
+              <div class="quote-role">{t.role}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- firms & platforms strip -->
+      <div class="firms reveal">
+        <div class="firm-block">
+          <div class="firm-label">Contracted by</div>
+          <div class="tags">
+            {firms.contractedBy.map((f) => <span class="tag">{f}</span>)}
+          </div>
+        </div>
+        <div class="firm-block">
+          <div class="firm-label">Ranked on</div>
+          <div class="tags">
+            {firms.rankedOn.map((f) => <span class="tag">{f}</span>)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACHIEVEMENTS CAROUSEL ===== -->
+  <section id="achievements">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">#05</span>
+        <span class="section-title">achievements</span>
+        <span class="section-sub">Code4rena, Sherlock, firms</span>
+      </div>
+      <div class="carousel reveal" id="carousel" data-count={achievements.length}>
+        <div class="carousel-count"><span id="carIndex">1</span> / {achievements.length}</div>
+        <button class="carousel-btn prev" id="carPrev" aria-label="Previous">‹</button>
+        <button class="carousel-btn next" id="carNext" aria-label="Next">›</button>
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="carTrack">
+            {achievements.map((a) => (
+              <div class="slide">
+                <div class="slide-imgwrap">
+                  <img src={a.img} alt={`${a.platform} — ${a.title}`} loading="lazy" />
+                </div>
+                <div class="slide-cap">
+                  <span class="pill">{a.platform}</span> {a.title}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="carousel-dots" id="carDots">
+          {achievements.map((_, i) => (
+            <button class={`cdot ${i === 0 ? 'active' : ''}`} data-i={i} aria-label={`Go to slide ${i + 1}`}></button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINDINGS ===== -->
+  <section id="findings">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">#06</span>
+        <span class="section-title">findings</span>
+        <span class="section-sub">62 confirmed across 4 platforms</span>
+      </div>
+      <div class="legend">
+        <span>👑 <b>unique finding</b></span>
+        <span>⭐ <b>selected for the final report</b></span>
+        <span>↗ <b>opens the public submission</b></span>
+      </div>
+      {contests.map((platform) => (
+        <div class="platform-block reveal">
+          <div class="platform-label">
+            {platform.platform}
+            <span class="pill">{platform.protocols.reduce((n, p) => n + p.findings.length, 0)} issues</span>
+          </div>
+          <div class="proto-grid">
+            {platform.protocols.map((proto) => (
+              <div class="proto">
+                <div class="proto-name">{proto.name}</div>
+                <div class="proto-links">
+                  {proto.findings.map((f) => (
+                    <a class={`flink ${f.badge ?? ''}`} href={f.url} target="_blank" rel="noopener noreferrer">
+                      {f.badge === 'crown' ? '👑 ' : f.badge === 'star' ? '⭐ ' : ''}{f.label} ↗
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== REQUEST AN AUDIT ===== -->
+  <section id="request">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">#07</span>
+        <span class="section-title">request an audit</span>
+        <span class="section-sub">scope it, I reply within 24h</span>
+      </div>
+      <div class="card req-panel reveal">
+        <form id="reqForm" class="req-form" novalidate>
+          <div class="field">
+            <label for="req-protocol">Protocol name</label>
+            <input id="req-protocol" name="protocol" type="text" placeholder="e.g. Acme Vault" required />
+          </div>
+          <div class="field">
+            <label for="req-ecosystem">Ecosystem</label>
+            <select id="req-ecosystem" name="ecosystem" required>
+              <option value="" selected disabled>Select…</option>
+              <option>EVM</option>
+              <option>Solana</option>
+              <option>Move (Aptos / Sui)</option>
+              <option>Cosmos</option>
+              <option>Other L1 / L2</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="req-scope">Scope</label>
+            <textarea id="req-scope" name="scope" placeholder="Contracts / modules in scope, and anything out of scope"></textarea>
+          </div>
+          <div class="field">
+            <label for="req-repo">Repo / docs</label>
+            <input id="req-repo" name="repo" type="text" placeholder="GitHub URL, docs link…" />
+          </div>
+          <div class="field">
+            <label for="req-loc">Estimated LoC</label>
+            <input id="req-loc" name="loc" type="text" inputmode="numeric" placeholder="e.g. ~1,500" />
+          </div>
+          <div class="field">
+            <label for="req-dates">Target dates</label>
+            <input id="req-dates" name="dates" type="text" placeholder="e.g. early July 2026" />
+          </div>
+          <div class="field">
+            <label for="req-contact">Your name / contact <span class="opt">(optional)</span></label>
+            <input id="req-contact" name="contact" type="text" placeholder="Name, Telegram or email to reach you" />
+          </div>
+          <div class="req-actions full">
+            <button type="submit" class="btn btn-primary">send request →</button>
+            <span class="req-note">Opens your email client with the details pre-filled — nothing is stored or sent to third parties.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-box reveal">
+        <h2>Need a security review?</h2>
+        <p>
+          Available for private audits, contest collaboration and bounty triage.
+          Send a repo + scope and I'll reply within 24h.
+        </p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href={`mailto:${contacts.email}`}>{contacts.email}</a>
+          <a class="btn" href={contacts.twitter} target="_blank" rel="noopener noreferrer">X {contacts.twitterHandle}</a>
+          <a class="btn" href={contacts.telegram} target="_blank" rel="noopener noreferrer">Telegram {contacts.telegramHandle}</a>
+        </div>
+        <div class="contact-links">
+          <a class="btn" href={contacts.code4rena} target="_blank" rel="noopener noreferrer">Code4rena ↗</a>
+          <a class="btn" href={contacts.sherlock} target="_blank" rel="noopener noreferrer">Sherlock ↗</a>
+          <a class="btn" href={contacts.cyfrin} target="_blank" rel="noopener noreferrer">Cyfrin ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <script>
+    const track = document.getElementById('carTrack');
+    if (track) {
+      const carousel = document.getElementById('carousel');
+      const count = Number(carousel.dataset.count) || 1;
+      const dots = Array.from(document.querySelectorAll('#carDots .cdot'));
+      const indexLabel = document.getElementById('carIndex');
+      let i = 0;
+
+      const render = () => {
+        track.style.transform = `translateX(-${i * 100}%)`;
+        dots.forEach((d, n) => d.classList.toggle('active', n === i));
+        if (indexLabel) indexLabel.textContent = String(i + 1);
+      };
+      const go = (n) => { i = (n + count) % count; render(); };
+
+      document.getElementById('carPrev').addEventListener('click', () => go(i - 1));
+      document.getElementById('carNext').addEventListener('click', () => go(i + 1));
+      dots.forEach((d) => d.addEventListener('click', () => go(Number(d.dataset.i))));
+
+      // keyboard arrows when carousel is in view
+      document.addEventListener('keydown', (e) => {
+        const rect = carousel.getBoundingClientRect();
+        const visible = rect.top < window.innerHeight && rect.bottom > 0;
+        if (!visible) return;
+        if (e.key === 'ArrowLeft') go(i - 1);
+        if (e.key === 'ArrowRight') go(i + 1);
+      });
+
+      // basic touch swipe
+      let startX = null;
+      track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', (e) => {
+        if (startX === null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 45) go(dx < 0 ? i + 1 : i - 1);
+        startX = null;
+      }, { passive: true });
+    }
+
+    // request-an-audit form → pre-filled mailto (no backend, no third parties)
+    const reqForm = document.getElementById('reqForm');
+    if (reqForm) {
+      reqForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const v = (id) => (document.getElementById(id)?.value || '').trim();
+        const protocol = v('req-protocol');
+        const ecosystem = v('req-ecosystem');
+        if (!protocol || !ecosystem) {
+          alert('Please fill in at least the protocol name and ecosystem.');
+          return;
+        }
+        const lines = [
+          'Protocol name: ' + protocol,
+          'Ecosystem: ' + ecosystem,
+          'Scope: ' + (v('req-scope') || '-'),
+          'Repo / docs: ' + (v('req-repo') || '-'),
+          'Estimated LoC: ' + (v('req-loc') || '-'),
+          'Target dates: ' + (v('req-dates') || '-'),
+          'Contact: ' + (v('req-contact') || '-'),
+        ];
+        const subject = 'Audit request: ' + protocol;
+        const body = lines.join('\n');
+        window.location.href =
+          'mailto:ivanfitro.ph@gmail.com?subject=' +
+          encodeURIComponent(subject) +
+          '&body=' +
+          encodeURIComponent(body);
+      });
+    }
+  </script>
+</Base>

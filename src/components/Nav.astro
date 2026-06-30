@@ -1,0 +1,42 @@
+---
+const { active } = Astro.props;
+---
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/images/logo.jpg" alt="Ivan Fitro logo" width="28" height="28" />
+      fitro
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="/#about">about</a>
+      <a href="/#stack">stack</a>
+      <a href="/#wins">wins</a>
+      <a href="/#testimonials">testimonials</a>
+      <a href="/#achievements">achievements</a>
+      <a href="/#findings">findings</a>
+      <a href="/work" class={active === 'work' ? 'active' : ''}>work</a>
+      <a href="/#contact">contact</a>
+    </div>
+    <a href="/#request" class="btn btn-primary nav-cta">request audit →</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  const t = document.getElementById('navToggle');
+  const l = document.getElementById('navLinks');
+  if (t && l) {
+    t.addEventListener('click', () => {
+      const open = l.classList.toggle('open');
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    l.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => {
+        l.classList.remove('open');
+        t.setAttribute('aria-expanded', 'false');
+      })
+    );
+  }
+</script>
