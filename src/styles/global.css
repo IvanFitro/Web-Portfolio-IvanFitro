@@ -522,21 +522,6 @@ section { padding: 84px 0; border-top: 1px solid var(--border); }
 .win-plat { font-family: var(--mono); font-size: 11.5px; color: var(--text-faint); margin-top: 12px; }
 .badge-icon { font-size: 15px; margin-left: 6px; }
 
-/* testimonials */
-.quote-card { display: flex; flex-direction: column; }
-.quote-mark {
-  font-family: var(--mono);
-  font-size: 44px;
-  line-height: .6;
-  color: var(--blue);
-  opacity: .7;
-  margin-bottom: 6px;
-}
-.quote-text { color: var(--text); font-size: 14px; line-height: 1.72; flex: 1; }
-.quote-foot { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }
-.quote-org { color: #fff; font-weight: 700; font-size: 14px; }
-.quote-role { font-family: var(--mono); color: var(--text-dim); font-size: 11.5px; margin-top: 2px; }
-
 /* firms & platforms strip */
 .firms { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 @media (max-width: 700px) { .firms { grid-template-columns: 1fr; } }
