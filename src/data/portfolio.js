@@ -35,7 +35,6 @@ export const stats = [
   { value: '62', label: 'confirmed findings' },
   { value: '19+', label: 'private audits' },
   { value: '4', label: 'audit platforms' },
-  { value: '3yrs', label: 'experience' },
 ];
 
 export const platformBreakdown = [
