@@ -133,7 +133,7 @@ export const testimonials = [
 
 // Firms & platforms strip
 export const firms = {
-  contractedBy: ['Pashov Audit Group', 'AdevarLabs', 'Burrasec'],
+  contractedBy: ['Pashov Audit Group', 'AdevarLabs', 'Burrasec', 'Kann Audits'],
   rankedOn: ['Sherlock', 'Code4rena', 'CodeHawks', 'Cantina'],
 };
 
