@@ -105,6 +105,7 @@ section { padding: 84px 0; border-top: 1px solid var(--border); }
   color: #fff;
 }
 .section-sub { color: var(--text-dim); font-size: 13px; margin-left: auto; font-family: var(--mono); }
+.gh-btn { align-self: center; margin-left: 14px; padding: 8px 14px; font-size: 12.5px; }
 
 .accent { color: var(--blue); }
 .dim { color: var(--text-dim); }
